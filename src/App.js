@@ -8,18 +8,20 @@ const App = () => {
   const [filteredTerms, setFilteredTerms] = useState([]);
 
   const apiUrl = 'https://28ulfmagvi.execute-api.eu-north-1.amazonaws.com/dev';
+
+  // ✅ FIX: Put API logic inside function
+  const handleSearch = () => {
     console.log('Fetching data from API...');
-    
-    // Construct the URL based on searchTerm
+
     const url = searchTerm
       ? `${apiUrl}/get-definition?term=${encodeURIComponent(searchTerm)}`
-      : `${apiUrl}/get-definition`; // Adjust for getting all terms if no searchTerm
+      : `${apiUrl}/get-definition`;
 
     axios
       .get(url)
       .then(response => {
         console.log('API Response:', response.data);
-        setTerms(response.data ? [response.data] : []);  // Assuming only one term returned
+        setTerms(response.data ? [response.data] : []);
         setFilteredTerms(response.data ? [response.data] : []);
       })
       .catch(error => {
@@ -37,8 +39,9 @@ const App = () => {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <button onClick={handleSearch}>Search</button> {/* Add Search button */}
+        <button onClick={handleSearch}>Search</button>
       </header>
+
       <div className="dictionary-container">
         {filteredTerms.map((term) => (
           <div key={term.term} className="card">
