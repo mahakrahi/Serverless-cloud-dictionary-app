@@ -7,7 +7,7 @@ const App = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredTerms, setFilteredTerms] = useState([]);
 
-  const apiUrl = 'https://28ulfmagvi.execute-api.eu-north-1.amazonaws.com/dev'
+  const apiUrl = 'https://28ulfmagvi.execute-api.eu-north-1.amazonaws.com/dev';
     console.log('Fetching data from API...');
     
     // Construct the URL based on searchTerm
